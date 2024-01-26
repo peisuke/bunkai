@@ -8,7 +8,7 @@ license = "Apache-2.0"
 readme = "README.md"
 homepage = "https://github.com/megagonlabs/bunkai"
 repository = "https://github.com/megagonlabs/bunkai"
-documentation = ""
+documentation = "https://github.com/megagonlabs/bunkai"
 keywords = ["Japanese", "Sentence boundary disambiguation"]
 
 [tool.poetry.dependencies]

@@ -134,6 +134,11 @@ class JanomeSubwordsTokenizer(BertTokenizer):
         :arg subword_tokenizer_type: (`optional`) string (default "wordpiece") Type of subword tokenizer.
         :arg cls_token: No description.
         """
+        if os.path.isfile(vocab_file):
+            self.vocab = load_vocab(vocab_file)
+        else:
+            self.vocab = load_vocab(cached_file(vocab_file, "vocab.txt"))
+
         super(BertTokenizer, self).__init__(
             unk_token=unk_token,
             sep_token=sep_token,
@@ -142,11 +147,6 @@ class JanomeSubwordsTokenizer(BertTokenizer):
             mask_token=mask_token,
             **kwargs,
         )
-
-        if os.path.isfile(vocab_file):
-            self.vocab = load_vocab(vocab_file)
-        else:
-            self.vocab = load_vocab(cached_file(vocab_file, "vocab.txt"))
 
         # add new vocab
         self.add_tokens([" ", bunkai.constant.METACHAR_LINE_BREAK])
